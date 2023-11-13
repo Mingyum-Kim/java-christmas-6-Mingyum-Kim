@@ -21,7 +21,7 @@ public class EventPlanner {
 
     public void run() {
         Customer customer = request();
-        outputView.printOrders(customer.toResponse());
+        response(customer);
     }
 
     private Customer request() {
@@ -35,5 +35,9 @@ public class EventPlanner {
                 .stream()
                 .map(order -> Order.of(order.name(), order.count()))
                 .toList();
+    }
+
+    private void response(Customer customer) {
+        outputView.printOrders(customer.toResponse());
     }
 }
