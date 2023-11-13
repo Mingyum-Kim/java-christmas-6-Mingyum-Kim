@@ -27,4 +27,8 @@ public class Order {
     public OrderResponse toResponse() {
         return new OrderResponse(menuItem.getName(), count.getValue());
     }
+
+    public int calculateMenuItemsCost() {
+        return menuItem.multiply(count.getValue());
+    }
 }
