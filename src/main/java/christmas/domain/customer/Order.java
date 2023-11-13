@@ -1,5 +1,6 @@
 package christmas.domain.customer;
 
+import christmas.controller.dto.response.OrderResponse;
 import christmas.domain.restaurant.MenuItem;
 
 public class Order {
@@ -21,5 +22,9 @@ public class Order {
 
     public Count getCount() {
         return count;
+    }
+
+    public OrderResponse toResponse() {
+        return new OrderResponse(menuItem.getName(), count.getValue());
     }
 }
