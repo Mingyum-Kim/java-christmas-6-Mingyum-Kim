@@ -1,7 +1,7 @@
 package christmas.controller.dto.request;
 
 public record OrderRequest(
-        String menu,
+        String name,
         int count
 ) {
 }
