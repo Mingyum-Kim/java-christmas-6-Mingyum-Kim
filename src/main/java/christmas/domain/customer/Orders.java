@@ -23,6 +23,12 @@ public class Orders {
                 .toList();
     }
 
+    public int calculateTotalCost() {
+        return orders.stream()
+                .mapToInt(Order::calculateMenuItemsCost)
+                .sum();
+    }
+
     private static class Validator {
         private static final int MIN_ORDER_COUNT = 1;
         private static final int MAX_ORDER_COUNT = 20;
