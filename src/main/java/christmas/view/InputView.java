@@ -18,7 +18,7 @@ public class InputView {
     public int requestDate() {
         ConsoleWriter.printlnMessage(DATE_REQUEST_MESSAGE);
         String date = ConsoleReader.enterMessage();
-        return Validator.validateNumber(date);
+        return Validator.validateNumber(date, ErrorMessage.INVALID_DATE_ERROR);
     }
 
     public OrdersRequest requestOrders() {
@@ -28,18 +28,18 @@ public class InputView {
     }
 
     private static class Validator {
-        public static int validateNumber(String message) {
+        public static int validateNumber(String message, ErrorMessage errorMessage) {
             try {
                 return Integer.parseInt(message);
             } catch (NumberFormatException e) {
-                throw CustomException.from(ErrorMessage.INVALID_DATE_ERROR);
+                throw CustomException.from(errorMessage);
             }
         }
 
         public static OrdersRequest validateOrders(String message) {
             List<String> orders = validateOrdersSeparators(message, ORDERS_SEPARATOR);
             for (String order : orders) {
-                OrderRequest orderRequest = validateOrderSeparator(order, ORDER_SEPARATOR);
+                validateOrderSeparator(order, ORDER_SEPARATOR);
             }
         }
 
@@ -82,7 +82,10 @@ public class InputView {
             validateDuplicatedSeparators(message, separator);
             List<String> order = parseStringToList(message, ORDER_SEPARATOR);
             validateSeparatorCount(order, separator);
-            return new OrderRequest(order.get(0), order.get(1));
+            return new OrderRequest(
+                    order.get(0),
+                    validateNumber(order.get(1), ErrorMessage.INVALID_ORDER_ERROR)
+            );
         }
 
         private static void validateSeparatorCount(List<String> message, String separator) {
