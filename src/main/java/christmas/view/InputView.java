@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.view.console.ConsoleReader;
 import christmas.view.console.ConsoleWriter;
 
 public class InputView {
@@ -7,5 +8,6 @@ public class InputView {
 
     public void requestDate() {
         ConsoleWriter.printlnMessage(DATE_REQUEST_MESSAGE);
+        ConsoleReader.enterMessage();
     }
 }
