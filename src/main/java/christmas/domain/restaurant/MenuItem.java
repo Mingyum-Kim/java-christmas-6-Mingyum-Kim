@@ -22,15 +22,19 @@ public enum MenuItem {
     CHAMPAGNE("샴페인", 25_000);
 
     private String name;
-    private int price;
+    private int cost;
 
-    MenuItem(String name, int price) {
+    MenuItem(String name, int cost) {
         this.name = name;
-        this.price = price;
+        this.cost = cost;
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getCost() {
+        return cost;
     }
 
     public static MenuItem findByName(String name) {
@@ -38,5 +42,9 @@ public enum MenuItem {
                 .filter(menuItem -> menuItem.name().equals(name))
                 .findAny()
                 .orElseThrow(() -> CustomException.from(ErrorMessage.INVALID_ORDER_ERROR));
+    }
+
+    public int multiply(int value) {
+        return cost * value;
     }
 }

@@ -18,4 +18,8 @@ public class Customer {
     public CustomerResponse toResponse() {
         return new CustomerResponse(date.getDate(), orders.toResponse());
     }
+
+    public int calculateTotalCost() {
+        return orders.calculateTotalCost();
+    }
 }

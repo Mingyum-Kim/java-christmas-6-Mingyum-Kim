@@ -39,5 +39,6 @@ public class EventPlanner {
 
     private void response(Customer customer) {
         outputView.printOrders(customer.toResponse());
+        outputView.printTotalCost(customer.calculateTotalCost());
     }
 }
