@@ -21,6 +21,8 @@ public class EventPlanner {
     public void run() {
         Date date = Date.from(inputView.requestDate());
         Orders orders = Orders.from(convertToOrders(inputView.requestOrders()));
+
+        outputView.printOrders(orders.toResponse());
     }
 
     private List<Order> convertToOrders(OrdersRequest ordersRequest) {

@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.controller.dto.response.OrdersResponse;
 import christmas.view.console.ConsoleWriter;
 
 public class OutputView {
@@ -7,5 +8,9 @@ public class OutputView {
 
     public void start() {
         ConsoleWriter.printlnMessage(START_MESSAGE);
+    }
+
+    public void printOrders(OrdersResponse ordersResponse) {
+
     }
 }
