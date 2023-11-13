@@ -27,11 +27,14 @@ public class Orders {
         }
 
         private static boolean hasDuplicatedMenuItems(List<Order> orders) {
-            return orders.size() != calculateUniqueSize(orders);
+            return orders.size() != calculateUniqueMenuItems(orders);
         }
 
-        private static int calculateUniqueSize(List<Order> orders) {
-            return (int) orders.stream().distinct().count();
+        private static int calculateUniqueMenuItems(List<Order> orders) {
+            return (int) orders.stream()
+                    .map(Order::getMenuItem)
+                    .distinct()
+                    .count();
         }
     }
 }
