@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.controller.dto.request.OrderRequest;
 import christmas.controller.dto.request.OrdersRequest;
 import christmas.global.exception.CustomException;
 import christmas.global.exception.ErrorMessage;
@@ -12,6 +13,7 @@ public class InputView {
     private static final String DATE_REQUEST_MESSAGE = "12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)";
     private static final String ORDERS_REQUEST_MESSAGE = "주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)";
     private static final String ORDERS_SEPARATOR = ",";
+    private static final String ORDER_SEPARATOR = "-";
 
     public int requestDate() {
         ConsoleWriter.printlnMessage(DATE_REQUEST_MESSAGE);
@@ -35,13 +37,16 @@ public class InputView {
         }
 
         public static OrdersRequest validateOrders(String message) {
-            List<String> orders = validateOrdersSeparators(message);
+            List<String> orders = validateOrdersSeparators(message, ORDERS_SEPARATOR);
+            for (String order : orders) {
+                OrderRequest orderRequest = validateOrderSeparator(order, ORDER_SEPARATOR);
+            }
         }
 
-        private static List<String> validateOrdersSeparators(String message) {
-            validateEdgeSeparators(message, ORDERS_SEPARATOR);
-            validateDuplicatedSeparators(message, ORDERS_SEPARATOR);
-            return parseStringToList(message, ORDERS_SEPARATOR);
+        private static List<String> validateOrdersSeparators(String message, String separator) {
+            validateEdgeSeparators(message, separator);
+            validateDuplicatedSeparators(message, separator);
+            return parseStringToList(message, separator);
         }
 
         private static void validateEdgeSeparators(String message, String separator) {
@@ -70,6 +75,24 @@ public class InputView {
 
         private static String[] split(String message, String separator) {
             return message.split(separator);
+        }
+
+        private static OrderRequest validateOrderSeparator(String message, String separator) {
+            validateEdgeSeparators(message, separator);
+            validateDuplicatedSeparators(message, separator);
+            List<String> order = parseStringToList(message, ORDER_SEPARATOR);
+            validateSeparatorCount(order, separator);
+            return new OrderRequest(order.get(0), order.get(1));
+        }
+
+        private static void validateSeparatorCount(List<String> message, String separator) {
+            if (isInvalidSeparatorCount(message)) {
+                throw CustomException.from(ErrorMessage.INVALID_ORDER_ERROR);
+            }
+        }
+
+        private static boolean isInvalidSeparatorCount(List<String> message) {
+            return message.size() != 2;
         }
     }
 }
