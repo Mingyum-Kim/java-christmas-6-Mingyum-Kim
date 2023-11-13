@@ -4,30 +4,34 @@ import christmas.global.exception.CustomException;
 import christmas.global.exception.ErrorMessage;
 
 public class Count {
-    private final int count;
+    private final int value;
 
-    private Count(int count) {
-        this.count = Validator.validate(count);
+    private Count(int value) {
+        this.value = Validator.validate(value);
     }
 
-    public static Count valueOf(int count) {
-        return new Count(count);
+    public static Count valueOf(int value) {
+        return new Count(value);
+    }
+
+    public int getValue() {
+        return value;
     }
 
     private static class Validator {
-        private static int validate(int count) {
-            validatePositive(count);
-            return count;
+        private static int validate(int value) {
+            validatePositive(value);
+            return value;
         }
 
-        private static void validatePositive(int count) {
-            if (isNotPositive(count)) {
+        private static void validatePositive(int value) {
+            if (isNotPositive(value)) {
                 throw CustomException.from(ErrorMessage.INVALID_ORDER_ERROR);
             }
         }
 
-        private static boolean isNotPositive(int count) {
-            return count < 1;
+        private static boolean isNotPositive(int value) {
+            return value < 1;
         }
     }
 }

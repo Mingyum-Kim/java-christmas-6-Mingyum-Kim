@@ -18,4 +18,8 @@ public class Order {
     public MenuItem getMenuItem() {
         return menuItem;
     }
+
+    public Count getCount() {
+        return count;
+    }
 }

@@ -17,9 +17,32 @@ public class Orders {
     }
 
     private static class Validator {
+        private static final int MIN_ORDER_COUNT = 1;
+        private static final int MAX_ORDER_COUNT = 20;
+
         private static List<Order> validate(List<Order> orders) {
             validateDuplicatedMenuItems(orders);
             validateOnlyBeverages(orders);
+            validateTotalCount(orders);
+            return orders;
+        }
+
+        private static void validateTotalCount(List<Order> orders) {
+            int totalCount = calculateTotalCount(orders);
+            if (isInvalidRange(totalCount)) {
+                throw CustomException.from(ErrorMessage.INVALID_ORDER_ERROR);
+            }
+        }
+
+        private static boolean isInvalidRange(int totalCount) {
+            return totalCount < MIN_ORDER_COUNT || totalCount > MAX_ORDER_COUNT;
+        }
+
+        private static int calculateTotalCount(List<Order> orders) {
+            return orders.stream()
+                    .map(Order::getCount)
+                    .mapToInt(Count::getValue)
+                    .sum();
         }
 
         private static void validateDuplicatedMenuItems(List<Order> orders) {
