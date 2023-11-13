@@ -10,7 +10,7 @@ public class Count {
         this.count = Validator.validate(count);
     }
 
-    public static Count from(int count) {
+    public static Count valueOf(int count) {
         return new Count(count);
     }
 
