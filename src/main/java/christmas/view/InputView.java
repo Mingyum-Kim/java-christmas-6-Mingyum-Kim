@@ -28,7 +28,7 @@ public class InputView {
     }
 
     private static class Validator {
-        public static int validateNumber(String message, ErrorMessage errorMessage) {
+        private static int validateNumber(String message, ErrorMessage errorMessage) {
             try {
                 return Integer.parseInt(message);
             } catch (NumberFormatException e) {
@@ -36,11 +36,15 @@ public class InputView {
             }
         }
 
-        public static OrdersRequest validateOrders(String message) {
+        private static OrdersRequest validateOrders(String message) {
             List<String> orders = validateOrdersSeparators(message, ORDERS_SEPARATOR);
-            for (String order : orders) {
-                validateOrderSeparator(order, ORDER_SEPARATOR);
-            }
+            return new OrdersRequest(parseStringToOrderRequest(orders));
+        }
+
+        private static List<OrderRequest> parseStringToOrderRequest(List<String> orders) {
+            return orders.stream()
+                    .map(order -> validateOrderSeparator(order, ORDER_SEPARATOR))
+                    .toList();
         }
 
         private static List<String> validateOrdersSeparators(String message, String separator) {
