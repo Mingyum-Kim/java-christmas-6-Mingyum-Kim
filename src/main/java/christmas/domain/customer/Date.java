@@ -14,6 +14,10 @@ public class Date {
         this.date = date;
     }
 
+    public int getDate() {
+        return date;
+    }
+
     public static Date from(int date) {
         return new Date(date);
     }

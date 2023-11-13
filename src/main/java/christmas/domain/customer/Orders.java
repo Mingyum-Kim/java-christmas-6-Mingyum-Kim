@@ -17,11 +17,7 @@ public class Orders {
         return new Orders(orders);
     }
 
-    public OrdersResponse toResponse() {
-        return new OrdersResponse(getOrders());
-    }
-
-    private List<OrderResponse> getOrders() {
+    public List<OrderResponse> toResponse() {
         return orders.stream()
                 .map(Order::toResponse)
                 .toList();
