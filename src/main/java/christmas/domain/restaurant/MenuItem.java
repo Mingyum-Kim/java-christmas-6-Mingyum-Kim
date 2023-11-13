@@ -39,7 +39,7 @@ public enum MenuItem {
 
     public static MenuItem findByName(String name) {
         return Arrays.stream(MenuItem.values())
-                .filter(menuItem -> menuItem.name().equals(name))
+                .filter(menuItem -> menuItem.getName().equals(name))
                 .findAny()
                 .orElseThrow(() -> CustomException.from(ErrorMessage.INVALID_ORDER_ERROR));
     }
