@@ -1,6 +1,7 @@
 package christmas.controller;
 
 import christmas.controller.dto.request.OrdersRequest;
+import christmas.domain.customer.Customer;
 import christmas.domain.customer.Date;
 import christmas.domain.customer.Order;
 import christmas.domain.customer.Orders;
@@ -19,10 +20,10 @@ public class EventPlanner {
     }
 
     public void run() {
-        Date date = Date.from(inputView.requestDate());
-        OrdersRequest ordersRequest = inputView.requestOrders();
-
-        Orders orders = Orders.from(convertToOrders(ordersRequest));
+        Customer customer = Customer.of(
+                Date.from(inputView.requestDate()),
+                Orders.from(convertToOrders(inputView.requestOrders()))
+        );
     }
 
     private List<Order> convertToOrders(OrdersRequest ordersRequest) {
