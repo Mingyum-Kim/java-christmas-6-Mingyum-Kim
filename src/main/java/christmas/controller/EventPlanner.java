@@ -1,7 +1,7 @@
 package christmas.controller;
 
 import christmas.controller.dto.request.OrdersRequest;
-import christmas.domain.Date;
+import christmas.domain.customer.Date;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 

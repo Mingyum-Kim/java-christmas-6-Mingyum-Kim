@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.domain.customer;
 
 import christmas.global.exception.CustomException;
 import christmas.global.exception.ErrorMessage;
