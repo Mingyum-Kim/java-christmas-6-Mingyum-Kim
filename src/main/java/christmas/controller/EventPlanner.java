@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.controller.dto.request.OrdersRequest;
 import christmas.domain.Date;
 import christmas.view.InputView;
 import christmas.view.OutputView;
@@ -16,5 +17,6 @@ public class EventPlanner {
 
     public void run() {
         Date date = Date.from(inputView.requestDate());
+        OrdersRequest ordersRequest = inputView.requestOrders();
     }
 }
