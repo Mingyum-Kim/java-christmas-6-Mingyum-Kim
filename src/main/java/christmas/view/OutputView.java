@@ -27,7 +27,8 @@ public class OutputView {
                 );
     }
 
-    public void printTotalCost(final int calculateTotalCost) {
+    public void printTotalCost(final int totalCost) {
         ConsoleWriter.printlnMessage(TOTAL_COST_NOTICE_MESSAGE);
+        ConsoleWriter.printlnFormat(COST_MESSAGE, totalCost);
     }
 }
