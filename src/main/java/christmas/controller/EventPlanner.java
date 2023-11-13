@@ -13,4 +13,8 @@ public class EventPlanner {
         this.outputView = outputView;
         outputView.start();
     }
+
+    public void run() {
+        inputView.requestDate();
+    }
 }
