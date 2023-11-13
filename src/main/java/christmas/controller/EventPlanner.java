@@ -1,10 +1,10 @@
 package christmas.controller;
 
+import christmas.domain.Date;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
 public class EventPlanner {
-
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -15,6 +15,6 @@ public class EventPlanner {
     }
 
     public void run() {
-        inputView.requestDate();
+        Date date = Date.from(inputView.requestDate());
     }
 }
