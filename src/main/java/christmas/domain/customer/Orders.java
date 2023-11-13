@@ -1,5 +1,6 @@
 package christmas.domain.customer;
 
+import christmas.domain.restaurant.Menu;
 import christmas.global.exception.CustomException;
 import christmas.global.exception.ErrorMessage;
 import java.util.List;
@@ -18,6 +19,7 @@ public class Orders {
     private static class Validator {
         private static List<Order> validate(List<Order> orders) {
             validateDuplicatedMenuItems(orders);
+            validateOnlyBeverages(orders);
         }
 
         private static void validateDuplicatedMenuItems(List<Order> orders) {
@@ -35,6 +37,25 @@ public class Orders {
                     .map(Order::getMenuItem)
                     .distinct()
                     .count();
+        }
+
+        private static void validateOnlyBeverages(List<Order> orders) {
+            if (containsOnlyBeverages(orders)) {
+                throw CustomException.from(ErrorMessage.INVALID_DATE_ERROR);
+            }
+        }
+
+        private static boolean containsOnlyBeverages(List<Order> orders) {
+            return hasSingleMenuItem(orders) && isBeverages(orders.get(0));
+        }
+
+        private static boolean isBeverages(Order order) {
+            return Menu.findByMenuItem(order.getMenuItem())
+                    .equals(Menu.BEVERAGE);
+        }
+
+        private static boolean hasSingleMenuItem(List<Order> orders) {
+            return orders.size() == 1;
         }
     }
 }
