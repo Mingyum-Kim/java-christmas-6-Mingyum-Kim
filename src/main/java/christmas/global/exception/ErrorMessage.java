@@ -1,7 +1,8 @@
 package christmas.global.exception;
 
 public enum ErrorMessage {
-    BLANK_INPUT_ERROR("빈 문자열이 입력되었습니다.");
+    BLANK_INPUT_ERROR("빈 문자열이 입력되었습니다."),
+    INVALID_DATE_ERROR("유효하지 않은 날짜입니다. 다시 입력해주세요.");
 
     private final String message;
 
