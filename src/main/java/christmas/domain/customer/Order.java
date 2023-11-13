@@ -1,6 +1,7 @@
 package christmas.domain.customer;
 
 import christmas.domain.restaurant.MenuItem;
+import java.util.Objects;
 
 public class Order {
     private MenuItem menuItem;
@@ -13,5 +14,22 @@ public class Order {
 
     public static Order of(String name, int count) {
         return new Order(name, count);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Order order = (Order) o;
+        return Objects.equals(menuItem, order.menuItem);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(menuItem);
     }
 }
