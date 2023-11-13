@@ -23,11 +23,24 @@ public enum Menu {
             MenuItem.ZERO_COLA,
             MenuItem.RED_WINE,
             MenuItem.CHAMPAGNE)
-    );
+    ),
+    EMPTY(Arrays.asList());
 
     private List<MenuItem> menuItems;
 
     Menu(List<MenuItem> menuItems) {
         this.menuItems = menuItems;
+    }
+
+    public static Menu findByMenuItem(MenuItem menuItem) {
+        return Arrays.stream(Menu.values())
+                .filter(menu -> menu.hasMenuItem(menuItem))
+                .findAny()
+                .orElse(EMPTY);
+    }
+
+    private boolean hasMenuItem(MenuItem target) {
+        return menuItems.stream()
+                .anyMatch(menItem -> menuItems.equals(target));
     }
 }
