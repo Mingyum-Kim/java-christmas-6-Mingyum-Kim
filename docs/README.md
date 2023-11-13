@@ -26,7 +26,7 @@
     - [ ] 뷰 ➡ 컨트롤러 레이어의 입력값 전달
         - [ ] 쉼표를 기준으로 입력 문자열을 나눈다.
         - [ ] 주문할 메뉴(String)와 메뉴의 개수(int)로 나눈다. (OrderRequest)
-        - [ ] List<OrderRequest>를 반환한다. (OrdersRequest)
+        - [x] List<OrderRequest>를 반환한다. (OrdersRequest)
     - [ ] 도메인 레이어(Orders)의 유효성 검증
         - [ ] 중복된 메뉴가 입력되지 않았는지 검증한다.
         - [ ] 음료만 주문하지 않았는 지 검증한다.
