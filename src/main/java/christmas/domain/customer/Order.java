@@ -1,6 +1,7 @@
 package christmas.domain.customer;
 
 import christmas.controller.dto.response.OrderResponse;
+import christmas.domain.restaurant.Menu;
 import christmas.domain.restaurant.MenuItem;
 
 public class Order {
@@ -28,7 +29,19 @@ public class Order {
         return new OrderResponse(menuItem.getName(), count.getValue());
     }
 
-    public int calculateMenuItemsCost() {
+    public int calculateCost() {
         return menuItem.multiply(count.getValue());
+    }
+
+    public boolean isDessertMenu() {
+        return Menu.isDessertMenu(menuItem);
+    }
+
+    public boolean isLessThan(int discountPrice) {
+        return menuItem.getCost() < discountPrice;
+    }
+
+    public int calculateTotalPrice(int price) {
+        return count.getValue() * price;
     }
 }

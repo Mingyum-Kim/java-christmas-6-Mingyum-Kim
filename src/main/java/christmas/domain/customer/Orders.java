@@ -25,8 +25,22 @@ public class Orders {
 
     public int calculateTotalCost() {
         return orders.stream()
-                .mapToInt(Order::calculateMenuItemsCost)
+                .mapToInt(Order::calculateCost)
                 .sum();
+    }
+
+    public int calculateTotalDiscountForDessertMenu(int discountPrice) {
+        return orders.stream()
+                .filter(Order::isDessertMenu)
+                .mapToInt(order -> calculateTotalDiscount(order, discountPrice))
+                .sum();
+    }
+
+    private int calculateTotalDiscount(Order order, int discountPrice) {
+        if (order.isLessThan(discountPrice)) {
+            return order.calculateCost();
+        }
+        return order.calculateTotalPrice(discountPrice);
     }
 
     private static class Validator {
