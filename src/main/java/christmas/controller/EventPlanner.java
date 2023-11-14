@@ -1,7 +1,7 @@
 package christmas.controller;
 
 import christmas.controller.dto.request.OrdersRequest;
-import christmas.domain.customer.Customer;
+import christmas.controller.dto.response.CustomerResponse;
 import christmas.domain.customer.Date;
 import christmas.domain.customer.Order;
 import christmas.domain.customer.Orders;
@@ -20,14 +20,9 @@ public class EventPlanner {
     }
 
     public void run() {
-        Customer customer = request();
-        response(customer);
-    }
-
-    private Customer request() {
         Date date = Date.from(inputView.requestDate());
         Orders orders = Orders.from(convertToOrders(inputView.requestOrders()));
-        return Customer.of(date, orders);
+        response(date, orders);
     }
 
     private List<Order> convertToOrders(OrdersRequest ordersRequest) {
@@ -37,8 +32,8 @@ public class EventPlanner {
                 .toList();
     }
 
-    private void response(Customer customer) {
-        outputView.printOrders(customer.toResponse());
-        outputView.printTotalCost(customer.calculateTotalCost());
+    private void response(Date date, Orders orders) {
+        outputView.printOrders(new CustomerResponse(date.getDate(), orders.toResponse()));
+        outputView.printTotalCost(orders.calculateTotalCost());
     }
 }
