@@ -5,6 +5,7 @@ import christmas.global.exception.CustomException;
 import christmas.global.exception.ErrorMessage;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Date {
     private static final int YEAR = 2023;
@@ -54,6 +55,23 @@ public class Date {
     public DayOfWeek findDayOfWeek(int date) {
         LocalDate localDate = LocalDate.of(YEAR, MONTH, date);
         return localDate.getDayOfWeek();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Date other = (Date) obj;
+        return date == other.date;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(date);
     }
 
     private static class Validator {
