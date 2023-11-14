@@ -1,5 +1,6 @@
 package christmas.domain.customer;
 
+import christmas.controller.dto.request.OrdersRequest;
 import christmas.controller.dto.response.OrderResponse;
 import christmas.domain.restaurant.Menu;
 import christmas.global.exception.CustomException;
@@ -13,8 +14,15 @@ public class Orders {
         this.orders = Validator.validate(orders);
     }
 
-    public static Orders from(List<Order> orders) {
-        return new Orders(orders);
+    public static Orders from(OrdersRequest ordersRequest) {
+        return new Orders(convertToOrdersFrom(ordersRequest));
+    }
+
+    private static List<Order> convertToOrdersFrom(OrdersRequest ordersRequest) {
+        return ordersRequest.orders()
+                .stream()
+                .map(order -> Order.of(order.name(), order.count()))
+                .toList();
     }
 
     public List<OrderResponse> toResponse() {

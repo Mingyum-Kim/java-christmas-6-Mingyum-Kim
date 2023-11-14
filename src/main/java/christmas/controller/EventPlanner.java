@@ -1,16 +1,13 @@
 package christmas.controller;
 
-import christmas.controller.dto.request.OrdersRequest;
 import christmas.controller.dto.response.CustomerResponse;
 import christmas.controller.dto.response.GiftsResponse;
 import christmas.domain.customer.Date;
-import christmas.domain.customer.Order;
 import christmas.domain.customer.Orders;
 import christmas.service.dto.response.PromotionsResponse;
 import christmas.service.promotion.PromotionHandler;
 import christmas.view.InputView;
 import christmas.view.OutputView;
-import java.util.List;
 
 public class EventPlanner {
     private final InputView inputView;
@@ -26,18 +23,11 @@ public class EventPlanner {
 
     public void run() {
         Date date = Date.from(inputView.requestDate());
-        Orders orders = Orders.from(convertOrders(inputView.requestOrders()));
+        Orders orders = Orders.from(inputView.requestOrders());
 
-        PromotionsResponse response = promotionHandler.process(date, orders);
-        response(date, orders, response);
+        response(date, orders, promotionHandler.process(date, orders));
     }
 
-    private List<Order> convertOrders(OrdersRequest ordersRequest) {
-        return ordersRequest.orders()
-                .stream()
-                .map(order -> Order.of(order.name(), order.count()))
-                .toList();
-    }
 
     private void response(Date date, Orders orders, PromotionsResponse promotionsResponse) {
         outputView.printOrders(new CustomerResponse(date.getDate(), orders.toResponse()));
