@@ -1,5 +1,6 @@
 package christmas.global.constants;
 
+import java.time.DayOfWeek;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,5 +21,16 @@ public enum DayType {
 
     DayType(List<DayOfWeek> days) {
         this.days = days;
+    }
+
+    public static boolean isWeekDay(DayOfWeek target) {
+        return findDayType(target).equals(WEEKDAY);
+    }
+
+    private static DayType findDayType(DayOfWeek target) {
+        return Arrays.stream(DayType.values())
+                .filter(dayOfWeek -> dayOfWeek.equals(target))
+                .findAny()
+                .orElseThrow(() -> new IllegalStateException());
     }
 }
