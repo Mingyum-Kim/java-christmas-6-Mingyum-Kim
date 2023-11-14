@@ -56,7 +56,7 @@ public class OutputView {
         ConsoleWriter.printlnFormat(GIFT_MENU_NOTICE_MESSAGE, name, count);
     }
 
-    private void printBenefits(BenefitsResponse benefitsResponse) {
+    public void printBenefits(BenefitsResponse benefitsResponse) {
         ConsoleWriter.printlnMessage(BENEFIT_NOTICE_MESSAGE);
 
         if (benefitsResponse.responses().isEmpty()) {
