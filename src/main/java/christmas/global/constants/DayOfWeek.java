@@ -1,4 +1,4 @@
-package christmas.service.promotion.constants;
+package christmas.global.constants;
 
 public enum DayOfWeek {
     MONDAY,

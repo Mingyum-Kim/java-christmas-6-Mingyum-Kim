@@ -1,4 +1,4 @@
-package christmas.service.promotion.constants;
+package christmas.global.constants;
 
 import java.util.Arrays;
 import java.util.List;
