@@ -1,8 +1,8 @@
 package christmas.view;
 
-import christmas.controller.dto.response.BenefitsResponse;
-import christmas.controller.dto.response.CustomerResponse;
-import christmas.controller.dto.response.GiftsResponse;
+import christmas.controller.dto.response.benefit.BenefitsResponse;
+import christmas.controller.dto.response.gift.GiftsResponse;
+import christmas.controller.dto.response.order.CustomerResponse;
 import christmas.view.console.ConsoleWriter;
 
 public class OutputView {
@@ -52,7 +52,7 @@ public class OutputView {
                 );
     }
 
-    private void printGiftMenu(String name, int count) {
+    private void printGiftMenu(final String name, final int count) {
         ConsoleWriter.printlnFormat(GIFT_MENU_NOTICE_MESSAGE, name, count);
     }
 
@@ -70,7 +70,11 @@ public class OutputView {
                 );
     }
 
-    private void printBenefit(String promotion, int price) {
+    private void printBenefit(final String promotion, final int price) {
         ConsoleWriter.printlnFormat(BENEFIT_RESPONSE_MESSAGE, promotion, price);
+    }
+
+    public void printCost(final int cost) {
+        ConsoleWriter.printlnFormat(COST_MESSAGE, cost);
     }
 }
