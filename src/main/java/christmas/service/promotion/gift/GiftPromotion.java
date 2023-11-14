@@ -1,12 +1,12 @@
 package christmas.service.promotion.gift;
 
-import christmas.controller.dto.response.PromotionResponse;
 import christmas.domain.customer.Count;
 import christmas.domain.customer.Date;
 import christmas.domain.customer.Orders;
 import christmas.domain.promotion.Gift;
 import christmas.domain.promotion.Promotion;
 import christmas.domain.restaurant.MenuItem;
+import christmas.service.dto.response.PromotionResponse;
 import christmas.service.promotion.PromotionService;
 
 public class GiftPromotion implements PromotionService<PromotionResponse<Gift>> {

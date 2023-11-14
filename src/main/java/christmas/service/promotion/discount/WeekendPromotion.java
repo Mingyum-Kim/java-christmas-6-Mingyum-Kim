@@ -1,11 +1,11 @@
 package christmas.service.promotion.discount;
 
-import christmas.controller.dto.response.PromotionResponse;
 import christmas.domain.customer.Date;
 import christmas.domain.customer.Orders;
 import christmas.domain.promotion.Discount;
 import christmas.domain.promotion.Promotion;
 import christmas.domain.restaurant.Menu;
+import christmas.service.dto.response.PromotionResponse;
 import christmas.service.promotion.PromotionService;
 
 public class WeekendPromotion implements PromotionService<PromotionResponse<Discount>> {

@@ -1,9 +1,9 @@
 package christmas.service.promotion;
 
-import christmas.controller.dto.response.PromotionResponse;
-import christmas.controller.dto.response.PromotionsResponse;
 import christmas.domain.customer.Date;
 import christmas.domain.customer.Orders;
+import christmas.service.dto.response.PromotionResponse;
+import christmas.service.dto.response.PromotionsResponse;
 import christmas.service.promotion.discount.ChristmasPromotion;
 import christmas.service.promotion.discount.SpecialPromotion;
 import christmas.service.promotion.discount.WeekdayPromotion;
