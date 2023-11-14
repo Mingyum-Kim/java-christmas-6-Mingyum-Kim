@@ -1,6 +1,6 @@
 package christmas.domain.promotion;
 
-public class Discount {
+public class Discount extends Benefit {
     private final int price;
 
     private Discount(int price) {

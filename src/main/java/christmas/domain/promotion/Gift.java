@@ -3,7 +3,7 @@ package christmas.domain.promotion;
 import christmas.domain.customer.Count;
 import christmas.domain.restaurant.MenuItem;
 
-public class Gift {
+public class Gift extends Benefit {
     private MenuItem menuItem;
     private Count count;
 
