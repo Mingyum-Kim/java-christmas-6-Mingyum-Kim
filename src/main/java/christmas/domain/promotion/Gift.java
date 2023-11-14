@@ -12,7 +12,7 @@ public class Gift {
         this.count = count;
     }
 
-    public static Gift from(MenuItem menuItem, Count count) {
+    public static Gift of(MenuItem menuItem, Count count) {
         return new Gift(menuItem, count);
     }
 }
