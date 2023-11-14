@@ -1,9 +1,10 @@
-package christmas.service.promotion;
+package christmas.service.promotion.discount;
 
 import christmas.domain.customer.Date;
 import christmas.domain.customer.Orders;
 import christmas.domain.promotion.Discount;
 import christmas.domain.restaurant.Menu;
+import christmas.service.promotion.PromotionService;
 
 public class WeekdayPromotion implements PromotionService<Discount> {
     private static final int DISCOUNT_PRICE_PER_MENU = 2_023;

@@ -1,8 +1,9 @@
-package christmas.service.promotion;
+package christmas.service.promotion.discount;
 
 import christmas.domain.customer.Date;
 import christmas.domain.customer.Orders;
 import christmas.domain.promotion.Discount;
+import christmas.service.promotion.PromotionService;
 
 public class ChristmasPromotion implements PromotionService<Discount> {
     private static final int INITIAL_DISCOUNT = 1000;
