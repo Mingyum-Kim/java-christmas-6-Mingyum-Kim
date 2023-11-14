@@ -22,6 +22,14 @@ public class Date {
         return new Date(date);
     }
 
+    public boolean isGreaterOrEqualTo(int date) {
+        return this.date >= date;
+    }
+
+    public boolean isLessThanOrEqualTo(int date) {
+        return this.date <= date;
+    }
+
     private static class Validator {
         private static int validate(int date) {
             validateRange(date);
