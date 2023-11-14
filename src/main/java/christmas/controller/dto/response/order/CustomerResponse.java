@@ -1,4 +1,4 @@
-package christmas.controller.dto.response;
+package christmas.controller.dto.response.order;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package christmas.controller.dto.response;
+package christmas.controller.dto.response.benefit;
 
 import christmas.service.dto.response.PromotionResponse;
 import christmas.service.dto.response.PromotionsResponse;

@@ -1,4 +1,4 @@
-package christmas.controller.dto.response;
+package christmas.controller.dto.response.gift;
 
 import christmas.domain.promotion.Gift;
 import christmas.service.dto.response.PromotionResponse;

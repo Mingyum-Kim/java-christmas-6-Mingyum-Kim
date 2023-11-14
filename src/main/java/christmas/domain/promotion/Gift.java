@@ -1,6 +1,6 @@
 package christmas.domain.promotion;
 
-import christmas.controller.dto.response.GiftResponse;
+import christmas.controller.dto.response.gift.GiftResponse;
 import christmas.domain.customer.Count;
 import christmas.domain.restaurant.MenuItem;
 

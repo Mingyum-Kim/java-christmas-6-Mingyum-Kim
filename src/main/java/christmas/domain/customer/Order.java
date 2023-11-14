@@ -1,6 +1,6 @@
 package christmas.domain.customer;
 
-import christmas.controller.dto.response.OrderResponse;
+import christmas.controller.dto.response.order.OrderResponse;
 import christmas.domain.restaurant.Menu;
 import christmas.domain.restaurant.MenuItem;
 
