@@ -23,8 +23,8 @@ public enum DayType {
         this.days = days;
     }
 
-    public static boolean isWeekDay(DayOfWeek target) {
-        return findDayType(target).equals(WEEKDAY);
+    public static boolean contains(DayOfWeek actual, DayType expected) {
+        return findDayType(actual).equals(expected);
     }
 
     private static DayType findDayType(DayOfWeek target) {

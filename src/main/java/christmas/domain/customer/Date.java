@@ -44,7 +44,11 @@ public class Date {
     }
 
     public boolean isWeekday() {
-        return DayType.isWeekDay(findDayOfWeek(date));
+        return DayType.contains(findDayOfWeek(date), DayType.WEEKDAY);
+    }
+
+    public boolean isWeekend() {
+        return DayType.contains(findDayOfWeek(date), DayType.WEEKEND);
     }
 
     public DayOfWeek findDayOfWeek(int date) {
