@@ -10,4 +10,8 @@ public class Discount extends Benefit {
     public static Discount from(int price) {
         return new Discount(price);
     }
+
+    public int getPrice() {
+        return price;
+    }
 }

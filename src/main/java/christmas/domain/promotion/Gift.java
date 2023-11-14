@@ -17,10 +17,14 @@ public class Gift extends Benefit {
         return new Gift(menuItem, count);
     }
 
-    public GiftResponse toResponse() {
+    public GiftResponse toGiftResponse() {
         return new GiftResponse(
                 this.menuItem.getName(),
                 this.count.getValue()
         );
+    }
+
+    public int getPrice() {
+        return this.menuItem.getCost() * this.count.getValue();
     }
 }
