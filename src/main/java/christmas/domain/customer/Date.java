@@ -30,6 +30,10 @@ public class Date {
         return this.date <= date;
     }
 
+    public int calculateRise(int discountRise) {
+        return (this.date - 1) * discountRise;
+    }
+
     private static class Validator {
         private static int validate(int date) {
             validateRange(date);

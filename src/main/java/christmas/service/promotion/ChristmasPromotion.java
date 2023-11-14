@@ -20,4 +20,8 @@ public class ChristmasPromotion implements PromotionService<Discount> {
     private boolean isQualified(Customer customer) {
         return customer.isDateInRange(START_DATE, END_DATE);
     }
+
+    private int calculateDiscountPrice(Customer customer) {
+        return INITIAL_DISCOUNT + customer.calculateRise(DISCOUNT_RISE);
+    }
 }

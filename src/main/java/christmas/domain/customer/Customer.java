@@ -22,4 +22,12 @@ public class Customer {
     public int calculateTotalCost() {
         return orders.calculateTotalCost();
     }
+
+    public boolean isDateInRange(int startDate, int endDate) {
+        return date.isGreaterOrEqualTo(startDate) && date.isLessThanOrEqualTo(endDate);
+    }
+
+    public int calculateRise(int rise) {
+        return date.calculateRise(rise);
+    }
 }
