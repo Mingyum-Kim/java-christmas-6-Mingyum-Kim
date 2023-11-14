@@ -16,6 +16,13 @@ import java.util.List;
 public class PromotionHandler {
     private static final int THRESHOLD = 10_000;
 
+    /**
+     * 모든 이벤트를 적용하고 혜택 내역을 생성하는 메서드
+     *
+     * @param date   방문할 날짜
+     * @param orders 주문 내역
+     * @return
+     */
     public PromotionsResponse process(Date date, Orders orders) {
         if (isQualified(orders)) {
             List<PromotionService<?>> promotionServices = register();
@@ -37,6 +44,11 @@ public class PromotionHandler {
                 .toList();
     }
 
+    /**
+     * 모든 이벤트의 구현 클래스를 등록하는 메서드
+     *
+     * @return 인터페이스의 구현 클래스의 리스트
+     */
     private List<PromotionService<?>> register() {
         return Arrays.asList(
                 new ChristmasPromotion(),
