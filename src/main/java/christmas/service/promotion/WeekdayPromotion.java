@@ -15,11 +15,11 @@ public class WeekdayPromotion implements PromotionService<Discount> {
         return Discount.from(0);
     }
 
-    private int calculateDiscountPrice(Orders orders) {
-        return orders.calculateTotalDiscountForDessertMenu(DISCOUNT_PRICE_PER_MENU);
-    }
-
     private boolean isQualified(Date date) {
         return date.isWeekday();
+    }
+
+    private int calculateDiscountPrice(Orders orders) {
+        return orders.calculateTotalDiscountForDessertMenu(DISCOUNT_PRICE_PER_MENU);
     }
 }
