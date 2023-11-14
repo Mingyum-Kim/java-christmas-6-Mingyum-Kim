@@ -2,6 +2,7 @@ package christmas.view;
 
 import christmas.controller.dto.response.CustomerResponse;
 import christmas.controller.dto.response.GiftsResponse;
+import christmas.service.dto.response.PromotionsResponse;
 import christmas.view.console.ConsoleWriter;
 
 public class OutputView {
@@ -13,6 +14,7 @@ public class OutputView {
     private static final String COST_MESSAGE = "%,d원";
     private static final String GIFT_MENU_NOTICE_MESSAGE = "\n<증정 메뉴>";
     private static final String NONE = "없음";
+    private static final String BENEFIT_NOTICE_MESSAGE = "\n<혜택 내역>";
 
     public void start() {
         ConsoleWriter.printlnMessage(START_MESSAGE);
@@ -50,5 +52,10 @@ public class OutputView {
 
     private void printGiftMenu(String name, int count) {
         ConsoleWriter.printlnFormat(GIFT_MENU_NOTICE_MESSAGE, name, count);
+    }
+
+    private void printBenefits(PromotionsResponse promotionsResponse) {
+        ConsoleWriter.printlnMessage(BENEFIT_NOTICE_MESSAGE);
+
     }
 }
