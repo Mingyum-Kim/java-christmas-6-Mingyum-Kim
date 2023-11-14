@@ -29,18 +29,18 @@ public class Orders {
                 .sum();
     }
 
-    public int calculateTotalDiscountForDessertMenu(int discountPrice) {
+    public int calculateTotalDiscountForMenu(int discount, Menu menu) {
         return orders.stream()
-                .filter(Order::isDessertMenu)
-                .mapToInt(order -> calculateTotalDiscount(order, discountPrice))
+                .filter(order -> order.isIncluded(menu))
+                .mapToInt(order -> calculateTotalDiscount(order, discount))
                 .sum();
     }
 
-    private int calculateTotalDiscount(Order order, int discountPrice) {
-        if (order.isLessThan(discountPrice)) {
+    private int calculateTotalDiscount(Order order, int discount) {
+        if (order.isLessThan(discount)) {
             return order.calculateCost();
         }
-        return order.calculateTotalPrice(discountPrice);
+        return order.calculateTotalPrice(discount);
     }
 
     private static class Validator {

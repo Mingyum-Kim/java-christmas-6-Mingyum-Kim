@@ -32,6 +32,10 @@ public enum Menu {
         this.menuItems = menuItems;
     }
 
+    public static boolean contains(Menu menu, MenuItem menuItem) {
+        return findByMenuItem(menuItem).equals(menu);
+    }
+
     public static Menu findByMenuItem(MenuItem menuItem) {
         return Arrays.stream(Menu.values())
                 .filter(menu -> menu.hasMenuItem(menuItem))
@@ -42,9 +46,5 @@ public enum Menu {
     private boolean hasMenuItem(MenuItem target) {
         return menuItems.stream()
                 .anyMatch(menItem -> menuItems.equals(target));
-    }
-
-    public static boolean isDessertMenu(MenuItem menuItem) {
-        return findByMenuItem(menuItem).equals(DESSERT);
     }
 }

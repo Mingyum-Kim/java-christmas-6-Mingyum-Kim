@@ -33,8 +33,8 @@ public class Order {
         return menuItem.multiply(count.getValue());
     }
 
-    public boolean isDessertMenu() {
-        return Menu.isDessertMenu(menuItem);
+    public boolean isIncluded(Menu menu) {
+        return Menu.contains(menu, menuItem);
     }
 
     public boolean isLessThan(int discountPrice) {
