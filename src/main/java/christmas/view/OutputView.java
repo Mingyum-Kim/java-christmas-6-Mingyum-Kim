@@ -1,8 +1,8 @@
 package christmas.view;
 
+import christmas.controller.dto.response.BenefitsResponse;
 import christmas.controller.dto.response.CustomerResponse;
 import christmas.controller.dto.response.GiftsResponse;
-import christmas.service.dto.response.PromotionsResponse;
 import christmas.view.console.ConsoleWriter;
 
 public class OutputView {
@@ -15,6 +15,7 @@ public class OutputView {
     private static final String GIFT_MENU_NOTICE_MESSAGE = "\n<증정 메뉴>";
     private static final String NONE = "없음";
     private static final String BENEFIT_NOTICE_MESSAGE = "\n<혜택 내역>";
+    private static final String BENEFIT_RESPONSE_MESSAGE = "%s: -%,d원";
 
     public void start() {
         ConsoleWriter.printlnMessage(START_MESSAGE);
@@ -39,6 +40,7 @@ public class OutputView {
 
     public void printGiftMenu(GiftsResponse giftsResponse) {
         ConsoleWriter.printlnMessage(GIFT_MENU_NOTICE_MESSAGE);
+
         if (giftsResponse.responses().isEmpty()) {
             ConsoleWriter.printlnMessage(NONE);
             return;
@@ -54,8 +56,21 @@ public class OutputView {
         ConsoleWriter.printlnFormat(GIFT_MENU_NOTICE_MESSAGE, name, count);
     }
 
-    private void printBenefits(PromotionsResponse promotionsResponse) {
+    private void printBenefits(BenefitsResponse benefitsResponse) {
         ConsoleWriter.printlnMessage(BENEFIT_NOTICE_MESSAGE);
 
+        if (benefitsResponse.responses().isEmpty()) {
+            ConsoleWriter.printlnMessage(NONE);
+            return;
+        }
+        benefitsResponse.responses()
+                .forEach(response -> printBenefit(
+                        response.promotion(),
+                        response.price())
+                );
+    }
+
+    private void printBenefit(String promotion, int price) {
+        ConsoleWriter.printlnFormat(BENEFIT_RESPONSE_MESSAGE, promotion, price);
     }
 }
