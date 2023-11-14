@@ -10,7 +10,7 @@ public class WeekdayPromotion implements PromotionService<Discount> {
     @Override
     public Discount apply(Date date, Orders orders) {
         if (isQualified(date)) {
-            return Discount.from(calculateDiscountPrice(orders));
+            return Discount.from(calculateDiscount(orders));
         }
         return Discount.from(0);
     }
@@ -19,7 +19,7 @@ public class WeekdayPromotion implements PromotionService<Discount> {
         return date.isWeekday();
     }
 
-    private int calculateDiscountPrice(Orders orders) {
+    private int calculateDiscount(Orders orders) {
         return orders.calculateTotalDiscountForDessertMenu(DISCOUNT_PRICE_PER_MENU);
     }
 }
