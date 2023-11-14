@@ -9,15 +9,25 @@ import christmas.service.promotion.discount.SpecialPromotion;
 import christmas.service.promotion.discount.WeekdayPromotion;
 import christmas.service.promotion.discount.WeekendPromotion;
 import christmas.service.promotion.gift.GiftPromotion;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class PromotionHandler {
-    public PromotionsResponse process(Date date, Orders orders) {
-        List<PromotionService<?>> promotionServices = register();
+    private static final int THRESHOLD = 10_000;
 
-        List<PromotionResponse> promotionResponses = generateResponses(date, orders, promotionServices);
-        return new PromotionsResponse(promotionResponses);
+    public PromotionsResponse process(Date date, Orders orders) {
+        if (isQualified(orders)) {
+            List<PromotionService<?>> promotionServices = register();
+
+            List<PromotionResponse> promotionResponses = generateResponses(date, orders, promotionServices);
+            return new PromotionsResponse(promotionResponses);
+        }
+        return new PromotionsResponse(new ArrayList<>());
+    }
+
+    private boolean isQualified(Orders orders) {
+        return orders.calculateOrdersCost() >= THRESHOLD;
     }
 
     private List<PromotionResponse> generateResponses(Date date, Orders orders,
