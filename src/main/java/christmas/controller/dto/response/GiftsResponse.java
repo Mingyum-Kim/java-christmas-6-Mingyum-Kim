@@ -17,7 +17,7 @@ public record GiftsResponse(
         return promotionResponses.stream()
                 .filter(response -> response.benefit() instanceof Gift)
                 .map(response -> (Gift) response.benefit())
-                .map(Gift::toResponse)
+                .map(Gift::toGiftResponse)
                 .toList();
     }
 }
