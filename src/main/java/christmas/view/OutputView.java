@@ -12,6 +12,7 @@ public class OutputView {
     private static final String TOTAL_COST_NOTICE_MESSAGE = "\n<할인 전 총주문 금액>";
     private static final String COST_MESSAGE = "%,d원";
     private static final String GIFT_MENU_NOTICE_MESSAGE = "\n<증정 메뉴>";
+    private static final String NONE = "없음";
 
     public void start() {
         ConsoleWriter.printlnMessage(START_MESSAGE);
@@ -36,6 +37,10 @@ public class OutputView {
 
     public void printGiftMenu(GiftsResponse giftsResponse) {
         ConsoleWriter.printlnMessage(GIFT_MENU_NOTICE_MESSAGE);
+        if (giftsResponse.responses().isEmpty()) {
+            ConsoleWriter.printlnMessage(NONE);
+            return;
+        }
         giftsResponse.responses()
                 .forEach(response -> printGiftMenu(
                         response.name(),
