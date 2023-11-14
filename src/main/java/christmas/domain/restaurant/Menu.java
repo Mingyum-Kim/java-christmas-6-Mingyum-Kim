@@ -43,4 +43,8 @@ public enum Menu {
         return menuItems.stream()
                 .anyMatch(menItem -> menuItems.equals(target));
     }
+
+    public static boolean isDessertMenu(MenuItem menuItem) {
+        return findByMenuItem(menuItem).equals(DESSERT);
+    }
 }
