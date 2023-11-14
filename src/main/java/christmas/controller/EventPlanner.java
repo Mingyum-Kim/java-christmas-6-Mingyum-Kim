@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.controller.dto.response.BenefitsResponse;
 import christmas.controller.dto.response.CustomerResponse;
 import christmas.controller.dto.response.GiftsResponse;
 import christmas.domain.customer.Date;
@@ -34,5 +35,6 @@ public class EventPlanner {
         outputView.printTotalCost(orders.calculateOrdersCost());
 
         outputView.printGiftMenu(GiftsResponse.from(promotionsResponse));
+        outputView.printBenefits(BenefitsResponse.from(promotionsResponse));
     }
 }
