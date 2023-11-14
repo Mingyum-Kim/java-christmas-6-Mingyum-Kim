@@ -22,17 +22,22 @@ public class Date {
         return new Date(date);
     }
 
-    public boolean isGreaterOrEqualTo(int date) {
+    public boolean isInRange(int startDate, int endDate) {
+        return isGreaterThanOrEqualTo(startDate) && isLessThanOrEqualTo(endDate);
+    }
+
+    private boolean isGreaterThanOrEqualTo(int date) {
         return this.date >= date;
     }
 
-    public boolean isLessThanOrEqualTo(int date) {
+    private boolean isLessThanOrEqualTo(int date) {
         return this.date <= date;
     }
 
-    public int calculateRise(int discountRise) {
-        return (this.date - 1) * discountRise;
+    public int calculateTotalIncrement(int increment) {
+        return (this.date - 1) * increment;
     }
+
 
     private static class Validator {
         private static int validate(int date) {
