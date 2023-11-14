@@ -3,16 +3,27 @@ package christmas.service.promotion;
 import christmas.domain.customer.Date;
 import christmas.domain.customer.Orders;
 import christmas.domain.promotion.Discount;
+import christmas.domain.restaurant.Menu;
 
 public class WeekendPromotion implements PromotionService<Discount> {
+    private static final int DISCOUNT_PRICE_PER_MENU = 2_023;
+
     @Override
     public Discount apply(Date date, Orders orders) {
         if (isQualified(date)) {
-            
+            return Discount.from(calculateDiscount(orders));
         }
+        return Discount.from(0);
     }
 
     private boolean isQualified(Date date) {
         return date.isWeekend();
+    }
+
+    private int calculateDiscount(Orders orders) {
+        return orders.calculateTotalDiscountForMenu(
+                DISCOUNT_PRICE_PER_MENU,
+                Menu.MAIN_COURSE
+        );
     }
 }

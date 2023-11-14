@@ -29,8 +29,8 @@ public class Order {
         return new OrderResponse(menuItem.getName(), count.getValue());
     }
 
-    public int calculateCost() {
-        return menuItem.multiply(count.getValue());
+    public int calculateTotalCost() {
+        return menuItem.getCost() * count.getValue();
     }
 
     public boolean isIncluded(Menu menu) {
@@ -42,6 +42,6 @@ public class Order {
     }
 
     public int calculateTotalPrice(int price) {
-        return count.getValue() * price;
+        return price * count.getValue();
     }
 }

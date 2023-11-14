@@ -43,8 +43,4 @@ public enum MenuItem {
                 .findAny()
                 .orElseThrow(() -> CustomException.from(ErrorMessage.INVALID_ORDER_ERROR));
     }
-
-    public int multiply(int value) {
-        return cost * value;
-    }
 }

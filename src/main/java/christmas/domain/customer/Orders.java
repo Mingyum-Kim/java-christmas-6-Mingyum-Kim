@@ -25,7 +25,7 @@ public class Orders {
 
     public int calculateTotalCost() {
         return orders.stream()
-                .mapToInt(Order::calculateCost)
+                .mapToInt(Order::calculateTotalCost)
                 .sum();
     }
 
@@ -38,7 +38,7 @@ public class Orders {
 
     private int calculateTotalDiscount(Order order, int discount) {
         if (order.isLessThan(discount)) {
-            return order.calculateCost();
+            return order.calculateTotalCost();
         }
         return order.calculateTotalPrice(discount);
     }

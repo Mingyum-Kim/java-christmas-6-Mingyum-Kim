@@ -3,6 +3,7 @@ package christmas.service.promotion;
 import christmas.domain.customer.Date;
 import christmas.domain.customer.Orders;
 import christmas.domain.promotion.Discount;
+import christmas.domain.restaurant.Menu;
 
 public class WeekdayPromotion implements PromotionService<Discount> {
     private static final int DISCOUNT_PRICE_PER_MENU = 2_023;
@@ -20,6 +21,6 @@ public class WeekdayPromotion implements PromotionService<Discount> {
     }
 
     private int calculateDiscount(Orders orders) {
-        return orders.calculateTotalDiscountForDessertMenu(DISCOUNT_PRICE_PER_MENU);
+        return orders.calculateTotalDiscountForMenu(DISCOUNT_PRICE_PER_MENU, Menu.DESSERT);
     }
 }
