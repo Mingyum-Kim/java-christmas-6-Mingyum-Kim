@@ -1,9 +1,14 @@
 package christmas.domain.customer;
 
+import christmas.global.constants.DayType;
 import christmas.global.exception.CustomException;
 import christmas.global.exception.ErrorMessage;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 
 public class Date {
+    private static final int YEAR = 2023;
+    private static final int MONTH = 12;
     private static final int START_DATE = 1;
     private static final int END_DATE = 31;
 
@@ -38,6 +43,14 @@ public class Date {
         return (this.date - 1) * increment;
     }
 
+    public boolean isWeekday() {
+        return DayType.isWeekDay(findDayOfWeek(date));
+    }
+
+    public DayOfWeek findDayOfWeek(int date) {
+        LocalDate localDate = LocalDate.of(YEAR, MONTH, date);
+        return localDate.getDayOfWeek();
+    }
 
     private static class Validator {
         private static int validate(int date) {
