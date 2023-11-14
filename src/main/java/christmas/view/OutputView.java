@@ -1,6 +1,7 @@
 package christmas.view;
 
 import christmas.controller.dto.response.CustomerResponse;
+import christmas.controller.dto.response.PromotionsResponse;
 import christmas.view.console.ConsoleWriter;
 
 public class OutputView {
@@ -10,6 +11,7 @@ public class OutputView {
     private static final String ORDER_RESPONSE_MESSAGE = "%s %d개";
     private static final String TOTAL_COST_NOTICE_MESSAGE = "\n<할인 전 총주문 금액>";
     private static final String COST_MESSAGE = "%,d원";
+    private static final String GIFT_MENU_NOTICE_MESSAGE = "\n<증정 메뉴>";
 
     public void start() {
         ConsoleWriter.printlnMessage(START_MESSAGE);
@@ -30,5 +32,9 @@ public class OutputView {
     public void printTotalCost(final int totalCost) {
         ConsoleWriter.printlnMessage(TOTAL_COST_NOTICE_MESSAGE);
         ConsoleWriter.printlnFormat(COST_MESSAGE, totalCost);
+    }
+
+    public void printGiftMenu(PromotionsResponse response) {
+        ConsoleWriter.printlnMessage(GIFT_MENU_NOTICE_MESSAGE);
     }
 }
