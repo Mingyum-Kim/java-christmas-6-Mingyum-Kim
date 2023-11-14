@@ -34,6 +34,6 @@ public class EventPlanner {
 
     private void response(Date date, Orders orders) {
         outputView.printOrders(new CustomerResponse(date.getDate(), orders.toResponse()));
-        outputView.printTotalCost(orders.calculateTotalCost());
+        outputView.printTotalCost(orders.calculateOrdersCost());
     }
 }

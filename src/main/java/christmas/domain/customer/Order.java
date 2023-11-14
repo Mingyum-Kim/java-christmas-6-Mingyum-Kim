@@ -29,7 +29,7 @@ public class Order {
         return new OrderResponse(menuItem.getName(), count.getValue());
     }
 
-    public int calculateTotalCost() {
+    public int calculateOrderCost() {
         return menuItem.getCost() * count.getValue();
     }
 

@@ -23,12 +23,19 @@ public class Orders {
                 .toList();
     }
 
-    public int calculateTotalCost() {
+    public int calculateOrdersCost() {
         return orders.stream()
-                .mapToInt(Order::calculateTotalCost)
+                .mapToInt(Order::calculateOrderCost)
                 .sum();
     }
 
+    /**
+     * 주문 내역에서 특정 메뉴 하나 당 할인을 적용하는 메서드
+     *
+     * @param discount 메뉴 하나 당 할인할 금액
+     * @param menu     할인을 적용할 메뉴
+     * @return 주문 내역에서 특정 메뉴에 대한 할인 금액의 총합
+     */
     public int calculateTotalDiscountForMenu(int discount, Menu menu) {
         return orders.stream()
                 .filter(order -> order.isIncluded(menu))
@@ -36,9 +43,16 @@ public class Orders {
                 .sum();
     }
 
+    /**
+     * 하나의 메뉴에 대한 주문 내역에서 할인을 적용하는 메서드
+     *
+     * @param order    주문 메뉴와 주문한 개수
+     * @param discount 메뉴 하나 당 할인 금액
+     * @return 메뉴의 가격이 할인 금액보다 작다면 메뉴의 가격의 총합, 크다면 할인 금액의 총합
+     */
     private int calculateTotalDiscount(Order order, int discount) {
         if (order.isLessThan(discount)) {
-            return order.calculateTotalCost();
+            return order.calculateOrderCost();
         }
         return order.calculateTotalPrice(discount);
     }
