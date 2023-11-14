@@ -2,13 +2,10 @@ package christmas.controller;
 
 import christmas.controller.dto.request.OrdersRequest;
 import christmas.controller.dto.response.CustomerResponse;
-import christmas.controller.dto.response.GiftResponse;
 import christmas.controller.dto.response.GiftsResponse;
 import christmas.domain.customer.Date;
 import christmas.domain.customer.Order;
 import christmas.domain.customer.Orders;
-import christmas.domain.promotion.Gift;
-import christmas.service.dto.response.PromotionResponse;
 import christmas.service.dto.response.PromotionsResponse;
 import christmas.service.promotion.PromotionHandler;
 import christmas.view.InputView;
@@ -46,19 +43,6 @@ public class EventPlanner {
         outputView.printOrders(new CustomerResponse(date.getDate(), orders.toResponse()));
         outputView.printTotalCost(orders.calculateOrdersCost());
 
-        outputView.printGiftMenu(toGiftsResponse(promotionsResponse));
-    }
-
-    private GiftsResponse toGiftsResponse(PromotionsResponse promotionsResponse) {
-        List<GiftResponse> giftResponses = toGiftResponses(promotionsResponse.responses());
-        return new GiftsResponse(giftResponses);
-    }
-
-    private List<GiftResponse> toGiftResponses(List<PromotionResponse> promotionResponses) {
-        return promotionResponses.stream()
-                .filter(response -> response.benefit() instanceof Gift)
-                .map(response -> (Gift) response.benefit())
-                .map(Gift::toResponse)
-                .toList();
+        outputView.printGiftMenu(GiftsResponse.from(promotionsResponse));
     }
 }
