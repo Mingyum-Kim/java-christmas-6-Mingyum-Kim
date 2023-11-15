@@ -31,6 +31,11 @@ public class Orders {
                 .toList();
     }
 
+    /**
+     * 주문 내역의 전체 금액을 계산하는 메서드
+     *
+     * @return 주문 내역의 할인 전 총 금액
+     */
     public int calculateOrdersCost() {
         return orders.stream()
                 .mapToInt(Order::calculateOrderCost)
