@@ -18,6 +18,17 @@ public class PromotionResults {
         return new PromotionResults(promotionResponses);
     }
 
+    public int calculatePayment(Orders orders) {
+        return orders.calculateOrdersCost() - calculateDiscount();
+    }
+
+    private int calculateDiscount() {
+        return results.stream()
+                .filter(result -> result.isInstanceOf(Discount.class))
+                .mapToInt(result -> result.getDiscount().getPrice())
+                .sum();
+    }
+
     public GiftsResponse toGiftsResponse() {
         List<GiftResponse> giftResponses = toGiftResponses();
         return new GiftsResponse(giftResponses);
@@ -40,9 +51,5 @@ public class PromotionResults {
         return results.stream()
                 .map(result -> result.toBenefitResponse())
                 .toList();
-    }
-
-    public int calculatePayment(Orders orders) {
-
     }
 }

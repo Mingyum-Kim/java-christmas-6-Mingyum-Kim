@@ -35,4 +35,8 @@ public class PromotionResult<T extends Benefit> {
     public Gift getGift() {
         return (Gift) benefit;
     }
+
+    public Discount getDiscount() {
+        return (Discount) benefit;
+    }
 }
