@@ -3,6 +3,7 @@ package christmas.controller;
 import christmas.controller.dto.response.order.CustomerResponse;
 import christmas.domain.customer.Date;
 import christmas.domain.customer.Orders;
+import christmas.domain.promotion.EventBadge;
 import christmas.domain.promotion.PromotionResults;
 import christmas.service.promotion.PromotionHandler;
 import christmas.view.InputView;
@@ -40,7 +41,12 @@ public class EventPlanner {
 
         outputView.printGiftMenu(promotionResults.toGiftsResponse());
         outputView.printBenefits(promotionResults.toBenefitsResponse());
-        outputView.printTotalBenefits(promotionResults.calculateTotalBenefits());
+
+        int totalBenefits = promotionResults.calculateTotalBenefits();
+        outputView.printTotalBenefits(totalBenefits);
+
         outputView.printCost(promotionResults.calculatePayment(orders));
+
+        outputView.printEventBadge(EventBadge.findByTotalBenefits(totalBenefits))
     }
 }
