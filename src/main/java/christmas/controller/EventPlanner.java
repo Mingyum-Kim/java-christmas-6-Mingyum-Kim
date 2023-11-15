@@ -8,6 +8,8 @@ import christmas.domain.promotion.PromotionResults;
 import christmas.service.promotion.PromotionHandler;
 import christmas.view.InputView;
 import christmas.view.OutputView;
+import christmas.view.console.ConsoleWriter;
+import java.util.function.Supplier;
 
 public class EventPlanner {
     private final InputView inputView;
@@ -25,12 +27,24 @@ public class EventPlanner {
     }
 
     public void run() {
-        Date date = Date.from(inputView.requestDate());
-        Orders orders = Orders.from(inputView.requestOrders());
-
+        Date date = retry(() -> {
+            return Date.from(inputView.requestDate());
+        });
+        Orders orders = retry(() -> {
+            return Orders.from(retry(inputView::requestOrders));
+        });
         response(date, orders, promotionHandler.process(date, orders));
     }
 
+    private static <T> T retry(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                ConsoleWriter.printlnMessage(e.getMessage());
+            }
+        }
+    }
 
     private void response(Date date,
                           Orders orders,
