@@ -12,6 +12,7 @@ import christmas.service.promotion.gift.GiftPromotion;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class PromotionHandler {
     private static final int THRESHOLD = 10_000;
@@ -27,8 +28,12 @@ public class PromotionHandler {
         if (isQualified(orders)) {
             List<PromotionService<?>> promotionServices = register();
 
-            List<PromotionResult> promotionResponses = generateResponses(date, orders, promotionServices);
-            return PromotionResults.from(promotionResponses);
+            List<PromotionResult> promotionResults = generatePromotionResults(
+                    date,
+                    orders,
+                    promotionServices
+            );
+            return PromotionResults.from(promotionResults);
         }
         return PromotionResults.from(new ArrayList<>());
     }
@@ -37,11 +42,21 @@ public class PromotionHandler {
         return orders.calculateOrdersCost() >= THRESHOLD;
     }
 
-    private List<PromotionResult> generateResponses(Date date, Orders orders,
-                                                    List<PromotionService<?>> promotionServices) {
+    private List<PromotionResult> generatePromotionResults(Date date, Orders orders,
+                                                           List<PromotionService<?>> promotionServices) {
         return promotionServices.stream()
-                .map(promotionService -> (PromotionResult) promotionService.apply(date, orders))
+                .map(promotionService -> generatePromotionResult(date, orders, promotionService))
+                .filter(Objects::nonNull)
                 .toList();
+    }
+
+    private PromotionResult generatePromotionResult(Date date, Orders orders,
+                                                    PromotionService<?> promotionService) {
+        PromotionResult promotionResult = (PromotionResult) promotionService.apply(date, orders);
+        if (promotionResult.isUsable()) {
+            return promotionResult;
+        }
+        return null;
     }
 
     /**

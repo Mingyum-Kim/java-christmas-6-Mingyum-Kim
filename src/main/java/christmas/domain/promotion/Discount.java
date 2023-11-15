@@ -14,4 +14,8 @@ public class Discount extends Benefit {
     public int getPrice() {
         return price;
     }
+
+    public boolean isNotEmpty() {
+        return price != 0;
+    }
 }
