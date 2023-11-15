@@ -12,7 +12,7 @@ public class SpecialPromotion implements PromotionService<PromotionResult<Discou
     private static final int[] specialDays = {
             3, 10, 17, 24, 25, 31
     };
-    private static final int DISCOUNT_PRICE = 1000;
+    private static final int DISCOUNT_PRICE = 1_000;
 
     @Override
     public PromotionResult<Discount> apply(Date date, Orders orders) {
