@@ -35,7 +35,7 @@ public class Order {
      * 현재 메뉴의 개수가 할인 가격보다 작은 지 확인하는 메서드
      *
      * @param discountPrice 메뉴 당 할인 가격
-     * @return 메뉴의 가격이 할인 가겨보다 작으면 true, 크거나 같으면 false
+     * @return 메뉴의 가격이 할인 가격보다 작으면 true, 크거나 같으면 false
      */
     public boolean isLessThan(int discountPrice) {
         return menuItem.getCost() < discountPrice;
