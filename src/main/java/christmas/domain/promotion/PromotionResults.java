@@ -22,10 +22,21 @@ public class PromotionResults {
         return orders.calculateOrdersCost() - calculateDiscount();
     }
 
+    public int calculateTotalBenefits() {
+        return calculateDiscount() + calculateGiftPrice();
+    }
+
     private int calculateDiscount() {
         return results.stream()
                 .filter(result -> result.isInstanceOf(Discount.class))
                 .mapToInt(result -> result.getDiscount().getPrice())
+                .sum();
+    }
+
+    private int calculateGiftPrice() {
+        return results.stream()
+                .filter(result -> result.isInstanceOf(Gift.class))
+                .mapToInt(result -> result.getGift().getPrice())
                 .sum();
     }
 
