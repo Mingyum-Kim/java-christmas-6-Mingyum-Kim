@@ -101,7 +101,14 @@ public class OutputView {
      */
     public void printTotalBenefits(final int benefits) {
         ConsoleWriter.printlnMessage(TOTAL_BENEFIT_NOTICE_MESSAGE);
-        ConsoleWriter.printlnFormat(TOTAL_BENEFIT_RESPONSE_MESSAGE, benefits);
+        ConsoleWriter.printlnFormat(getTotalBenefitResponseMessage(benefits), benefits);
+    }
+
+    private String getTotalBenefitResponseMessage(int benefits) {
+        if (benefits == 0) {
+            return COST_MESSAGE;
+        }
+        return TOTAL_BENEFIT_RESPONSE_MESSAGE;
     }
 
     /**
