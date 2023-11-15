@@ -131,7 +131,7 @@ public class Orders {
 
         private static void validateOnlyBeverages(List<Order> orders) {
             if (containsOnlyBeverages(orders)) {
-                throw CustomException.from(ErrorMessage.INVALID_DATE_ERROR);
+                throw CustomException.from(ErrorMessage.INVALID_ORDER_ERROR);
             }
         }
 
