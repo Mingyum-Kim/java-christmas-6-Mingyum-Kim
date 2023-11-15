@@ -18,10 +18,21 @@ public class PromotionResults {
         return new PromotionResults(promotionResponses);
     }
 
+    /**
+     * 결제 금액에서 할인 금액을 차감한 예상 결제 금액을 계산하는 메서드
+     *
+     * @param orders 주문 내역
+     * @return 예상 결제 금액
+     */
     public int calculatePayment(Orders orders) {
         return orders.calculateOrdersCost() - calculateDiscount();
     }
 
+    /**
+     * 증정 혜택과 할인 혜택으로 인한 총 혜택 금액을 계산하는 메서드
+     *
+     * @return 총 혜택 금액
+     */
     public int calculateTotalBenefits() {
         return calculateDiscount() + calculateGiftPrice();
     }
@@ -40,6 +51,11 @@ public class PromotionResults {
                 .sum();
     }
 
+    /**
+     * 증정품의 종류와 개수를 저장한 DTO 클래스를 생성하는 메서드
+     *
+     * @return GiftsResponse 객체
+     */
     public GiftsResponse toGiftsResponse() {
         List<GiftResponse> giftResponses = toGiftResponses();
         return new GiftsResponse(giftResponses);
@@ -53,6 +69,11 @@ public class PromotionResults {
                 .toList();
     }
 
+    /**
+     * 이벤트와 혜택 금액을 저장한 DTO 클래스를 생성하는 메서드
+     *
+     * @return 혜택 내역
+     */
     public BenefitsResponse toBenefitsResponse() {
         List<BenefitResponse> benefitResponses = toBenefitResponses();
         return new BenefitsResponse(benefitResponses);
