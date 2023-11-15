@@ -23,8 +23,7 @@ public enum Menu {
             MenuItem.ZERO_COLA,
             MenuItem.RED_WINE,
             MenuItem.CHAMPAGNE)
-    ),
-    EMPTY(Arrays.asList());
+    );
 
     private List<MenuItem> menuItems;
 
@@ -51,6 +50,6 @@ public enum Menu {
         return Arrays.stream(values())
                 .filter(menu -> menu.menuItems.contains(menuItem))
                 .findFirst()
-                .orElse(EMPTY);
+                .orElseThrow(() -> new IllegalStateException());
     }
 }
