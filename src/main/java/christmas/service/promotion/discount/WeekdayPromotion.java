@@ -4,22 +4,22 @@ import christmas.domain.customer.Date;
 import christmas.domain.customer.Orders;
 import christmas.domain.promotion.Discount;
 import christmas.domain.promotion.Promotion;
+import christmas.domain.promotion.PromotionResult;
 import christmas.domain.restaurant.Menu;
-import christmas.service.dto.response.PromotionResponse;
 import christmas.service.promotion.PromotionService;
 
-public class WeekdayPromotion implements PromotionService<PromotionResponse<Discount>> {
+public class WeekdayPromotion implements PromotionService<PromotionResult<Discount>> {
     private static final int DISCOUNT_PRICE_PER_MENU = 2_023;
 
     @Override
-    public PromotionResponse<Discount> apply(Date date, Orders orders) {
+    public PromotionResult<Discount> apply(Date date, Orders orders) {
         if (isQualified(date)) {
-            return new PromotionResponse(
+            return PromotionResult.of(
                     Promotion.WEEKDAY,
                     Discount.from(calculateDiscount(orders))
             );
         }
-        return new PromotionResponse(
+        return PromotionResult.of(
                 Promotion.WEEKDAY,
                 Discount.from(0)
         );

@@ -2,8 +2,8 @@ package christmas.service.promotion;
 
 import christmas.domain.customer.Date;
 import christmas.domain.customer.Orders;
-import christmas.service.dto.response.PromotionResponse;
-import christmas.service.dto.response.PromotionsResponse;
+import christmas.domain.promotion.PromotionResult;
+import christmas.domain.promotion.PromotionResults;
 import christmas.service.promotion.discount.ChristmasPromotion;
 import christmas.service.promotion.discount.SpecialPromotion;
 import christmas.service.promotion.discount.WeekdayPromotion;
@@ -23,24 +23,24 @@ public class PromotionHandler {
      * @param orders 주문 내역
      * @return
      */
-    public PromotionsResponse process(Date date, Orders orders) {
+    public PromotionResults process(Date date, Orders orders) {
         if (isQualified(orders)) {
             List<PromotionService<?>> promotionServices = register();
 
-            List<PromotionResponse> promotionResponses = generateResponses(date, orders, promotionServices);
-            return new PromotionsResponse(promotionResponses);
+            List<PromotionResult> promotionResponses = generateResponses(date, orders, promotionServices);
+            return PromotionResults.from(promotionResponses);
         }
-        return new PromotionsResponse(new ArrayList<>());
+        return PromotionResults.from(new ArrayList<>());
     }
 
     private boolean isQualified(Orders orders) {
         return orders.calculateOrdersCost() >= THRESHOLD;
     }
 
-    private List<PromotionResponse> generateResponses(Date date, Orders orders,
-                                                      List<PromotionService<?>> promotionServices) {
+    private List<PromotionResult> generateResponses(Date date, Orders orders,
+                                                    List<PromotionService<?>> promotionServices) {
         return promotionServices.stream()
-                .map(promotionService -> (PromotionResponse) promotionService.apply(date, orders))
+                .map(promotionService -> (PromotionResult) promotionService.apply(date, orders))
                 .toList();
     }
 

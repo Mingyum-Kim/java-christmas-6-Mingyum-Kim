@@ -4,24 +4,24 @@ import christmas.domain.customer.Date;
 import christmas.domain.customer.Orders;
 import christmas.domain.promotion.Discount;
 import christmas.domain.promotion.Promotion;
-import christmas.service.dto.response.PromotionResponse;
+import christmas.domain.promotion.PromotionResult;
 import christmas.service.promotion.PromotionService;
 
-public class ChristmasPromotion implements PromotionService<PromotionResponse<Discount>> {
+public class ChristmasPromotion implements PromotionService<PromotionResult<Discount>> {
     private static final int INITIAL_DISCOUNT = 1000;
     private static final int DISCOUNT_INCREMENT = 100;
     private static final int START_DATE = 1;
     private static final int END_DATE = 25;
 
     @Override
-    public PromotionResponse<Discount> apply(Date date, Orders orders) {
+    public PromotionResult<Discount> apply(Date date, Orders orders) {
         if (isQualified(date)) {
-            return new PromotionResponse(
+            return PromotionResult.of(
                     Promotion.CHRISTMAS,
                     Discount.from(calculateDiscountPrice(date))
             );
         }
-        return new PromotionResponse(
+        return PromotionResult.of(
                 Promotion.CHRISTMAS,
                 Discount.from(0)
         );

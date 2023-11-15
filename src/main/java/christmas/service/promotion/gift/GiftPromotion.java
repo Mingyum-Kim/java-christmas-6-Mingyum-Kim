@@ -5,24 +5,24 @@ import christmas.domain.customer.Date;
 import christmas.domain.customer.Orders;
 import christmas.domain.promotion.Gift;
 import christmas.domain.promotion.Promotion;
+import christmas.domain.promotion.PromotionResult;
 import christmas.domain.restaurant.MenuItem;
-import christmas.service.dto.response.PromotionResponse;
 import christmas.service.promotion.PromotionService;
 
-public class GiftPromotion implements PromotionService<PromotionResponse<Gift>> {
+public class GiftPromotion implements PromotionService<PromotionResult<Gift>> {
     private static final MenuItem GIFT_ITEM = MenuItem.CHAMPAGNE;
     private static final int GIFT_COUNT = 1;
     private static final int THRESHOLD = 120_000;
 
     @Override
-    public PromotionResponse<Gift> apply(Date date, Orders orders) {
+    public PromotionResult<Gift> apply(Date date, Orders orders) {
         if (isQualified(orders)) {
-            return new PromotionResponse(
+            return PromotionResult.of(
                     Promotion.GIFT,
                     Gift.of(GIFT_ITEM, Count.valueOf(GIFT_COUNT))
             );
         }
-        return new PromotionResponse(
+        return PromotionResult.of(
                 Promotion.GIFT,
                 Gift.of(MenuItem.NONE, Count.valueOf(0))
         );
