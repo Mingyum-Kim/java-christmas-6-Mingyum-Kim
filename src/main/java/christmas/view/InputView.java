@@ -18,7 +18,10 @@ public class InputView {
     public int requestDate() {
         ConsoleWriter.printlnMessage(DATE_REQUEST_MESSAGE);
         String date = ConsoleReader.enterMessage();
-        return Validator.validateNumber(date, ErrorMessage.INVALID_DATE_ERROR);
+        return Validator.validateNumber(
+                date,
+                ErrorMessage.INVALID_DATE_ERROR
+        );
     }
 
     public OrdersRequest requestOrders() {
