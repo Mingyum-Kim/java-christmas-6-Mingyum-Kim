@@ -31,4 +31,8 @@ public enum EventBadge {
                 .findFirst()
                 .orElse(NONE);
     }
+
+    public String getName() {
+        return this.name;
+    }
 }

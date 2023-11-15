@@ -3,6 +3,7 @@ package christmas.view;
 import christmas.controller.dto.response.benefit.BenefitsResponse;
 import christmas.controller.dto.response.gift.GiftsResponse;
 import christmas.controller.dto.response.order.CustomerResponse;
+import christmas.domain.promotion.EventBadge;
 import christmas.view.console.ConsoleWriter;
 
 public class OutputView {
@@ -82,5 +83,9 @@ public class OutputView {
 
     public void printCost(final int cost) {
         ConsoleWriter.printlnFormat(COST_MESSAGE, cost);
+    }
+
+    public void printEventBadge(EventBadge eventBadge) {
+        ConsoleWriter.printlnMessage(eventBadge.getName());
     }
 }
