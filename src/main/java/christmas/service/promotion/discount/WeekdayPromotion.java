@@ -14,7 +14,7 @@ public class WeekdayPromotion implements PromotionService<Optional<PromotionResu
 
     @Override
     public Optional<PromotionResult<Discount>> apply(Date date, Orders orders) {
-        if (isQualified(date)) {
+        if (isQualified(date, orders)) {
             return Optional.of(
                     PromotionResult.of(
                             Promotion.WEEKDAY,
@@ -25,8 +25,8 @@ public class WeekdayPromotion implements PromotionService<Optional<PromotionResu
         return Optional.empty();
     }
 
-    private boolean isQualified(Date date) {
-        return date.isWeekday();
+    private boolean isQualified(Date date, Orders orders) {
+        return date.isWeekday() && orders.hasAtLeastForMenu(Menu.DESSERT);
     }
 
     /**

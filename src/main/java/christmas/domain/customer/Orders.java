@@ -65,6 +65,19 @@ public class Orders {
         return order.calculateTotalPrice(discount);
     }
 
+    /**
+     * 주문 내역에 특정 메뉴가 하나라도 있는 지 확인하는 메서드
+     *
+     * @param menu 주문 내역에서 찾을 특정 메뉴
+     * @return 찾는 메뉴가 하나라도 있으면 true, 그렇지 않으면 false
+     */
+    public boolean hasAtLeastForMenu(Menu menu) {
+        return orders.stream()
+                .anyMatch(order ->
+                        Menu.contains(menu, order.getMenuItem())
+                );
+    }
+
     private static class Validator {
         private static final int MIN_ORDER_COUNT = 1;
         private static final int MAX_ORDER_COUNT = 20;
