@@ -17,7 +17,9 @@ public class OutputView {
     private static final String NONE = "없음";
     private static final String BENEFIT_NOTICE_MESSAGE = "\n<혜택 내역>";
     private static final String BENEFIT_RESPONSE_MESSAGE = "%s: -%,d원";
-    private static final String TOTAL_BENEFIT_NOTICE_MESSAGE = "총혜택 금액";
+    private static final String TOTAL_BENEFIT_NOTICE_MESSAGE = "\n<총혜택 금액>";
+    private static final String PAYMENT_NOTICE_MESSAGE = "\n<할인 후 예상 결제 금액>";
+    private static final String EVENT_BADGE_NOTICE_MESSAGE = "\n<12월 이벤트 배지>";
 
     public void start() {
         ConsoleWriter.printlnMessage(START_MESSAGE);
@@ -35,11 +37,21 @@ public class OutputView {
                 );
     }
 
+    /**
+     * 할인 전 총 주문 금액 출력 메서드
+     *
+     * @param totalCost 할인 전 총 주문 금액
+     */
     public void printTotalCost(final int totalCost) {
         ConsoleWriter.printlnMessage(TOTAL_COST_NOTICE_MESSAGE);
         ConsoleWriter.printlnFormat(COST_MESSAGE, totalCost);
     }
 
+    /**
+     * 증정 메뉴 출력 메서드
+     *
+     * @param giftsResponse 증정 메뉴와 개수의 목록
+     */
     public void printGiftMenu(GiftsResponse giftsResponse) {
         ConsoleWriter.printlnMessage(GIFT_MENU_NOTICE_MESSAGE);
 
@@ -58,6 +70,11 @@ public class OutputView {
         ConsoleWriter.printlnFormat(GIFT_MENU_NOTICE_MESSAGE, name, count);
     }
 
+    /**
+     * 혜택 내역 출력 메서드
+     *
+     * @param benefitsResponse 이벤트 이름과 혜택 내역의 목록
+     */
     public void printBenefits(BenefitsResponse benefitsResponse) {
         ConsoleWriter.printlnMessage(BENEFIT_NOTICE_MESSAGE);
 
@@ -76,16 +93,33 @@ public class OutputView {
         ConsoleWriter.printlnFormat(BENEFIT_RESPONSE_MESSAGE, promotion, price);
     }
 
+    /**
+     * 총 혜택 금액 출력 메서드
+     *
+     * @param benefits 총 혜택 금액
+     */
     public void printTotalBenefits(final int benefits) {
         ConsoleWriter.printlnMessage(TOTAL_BENEFIT_NOTICE_MESSAGE);
         ConsoleWriter.printlnFormat(COST_MESSAGE, benefits);
     }
 
-    public void printCost(final int cost) {
-        ConsoleWriter.printlnFormat(COST_MESSAGE, cost);
+    /**
+     * 할인 후 예상 결제 금액 출력 메서드
+     *
+     * @param payment 할인 후 예상 결제 금액
+     */
+    public void printPayment(final int payment) {
+        ConsoleWriter.printlnMessage(PAYMENT_NOTICE_MESSAGE);
+        ConsoleWriter.printlnFormat(COST_MESSAGE, payment);
     }
 
+    /**
+     * 12월 이벤트 배지 출력 메서드
+     *
+     * @param eventBadge 이벤트 배지
+     */
     public void printEventBadge(EventBadge eventBadge) {
+        ConsoleWriter.printlnMessage(EVENT_BADGE_NOTICE_MESSAGE);
         ConsoleWriter.printlnMessage(eventBadge.getName());
     }
 }

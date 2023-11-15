@@ -45,8 +45,8 @@ public class EventPlanner {
         int totalBenefits = promotionResults.calculateTotalBenefits();
         outputView.printTotalBenefits(totalBenefits);
 
-        outputView.printCost(promotionResults.calculatePayment(orders));
+        outputView.printPayment(promotionResults.calculatePayment(orders));
 
-        outputView.printEventBadge(EventBadge.findByTotalBenefits(totalBenefits))
+        outputView.printEventBadge(EventBadge.findByTotalBenefits(totalBenefits));
     }
 }
