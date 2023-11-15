@@ -29,6 +29,12 @@ public class WeekdayPromotion implements PromotionService<PromotionResult<Discou
         return date.isWeekday();
     }
 
+    /**
+     * 디저트 메뉴 하나 당 할인 금액을 적용하는 메서드
+     *
+     * @param orders 주문 내역
+     * @return 모든 디저트 메뉴에 대한 총 할인 금액
+     */
     private int calculateDiscount(Orders orders) {
         return orders.calculateTotalDiscountForMenu(DISCOUNT_PRICE_PER_MENU, Menu.DESSERT);
     }

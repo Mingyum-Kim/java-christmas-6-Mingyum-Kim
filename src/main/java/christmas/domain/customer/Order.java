@@ -33,6 +33,12 @@ public class Order {
         return menuItem.getCost() * count.getValue();
     }
 
+    /**
+     * 특정 메뉴 카테고리에 해당하는 주문임을 확인하는 메서드
+     *
+     * @param menu 메뉴 카테고리
+     * @return 주문 메뉴가 메뉴 카테고리와 일치하면 true, 그렇지 않으면 false
+     */
     public boolean isIncluded(Menu menu) {
         return Menu.contains(menu, menuItem);
     }
