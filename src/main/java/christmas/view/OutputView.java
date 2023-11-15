@@ -67,7 +67,7 @@ public class OutputView {
     }
 
     private void printGiftMenu(final String name, final int count) {
-        ConsoleWriter.printlnFormat(GIFT_MENU_NOTICE_MESSAGE, name, count);
+        ConsoleWriter.printlnFormat(MENU_RESPONSE_MESSAGE, name, count);
     }
 
     /**
