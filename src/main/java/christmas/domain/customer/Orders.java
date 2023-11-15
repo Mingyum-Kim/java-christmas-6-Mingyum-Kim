@@ -122,8 +122,7 @@ public class Orders {
         }
 
         private static boolean isBeverages(Order order) {
-            return Menu.findByMenuItem(order.getMenuItem())
-                    .equals(Menu.BEVERAGE);
+            return Menu.contains(Menu.BEVERAGE, order.getMenuItem());
         }
 
         private static boolean hasSingleMenuItem(List<Order> orders) {
