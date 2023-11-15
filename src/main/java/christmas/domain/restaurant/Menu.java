@@ -32,6 +32,10 @@ public enum Menu {
         this.menuItems = menuItems;
     }
 
+    public List<MenuItem> getMenuItems() {
+        return menuItems;
+    }
+
     /**
      * 메뉴 아이템이 특정 메뉴 분류에 확인하는 메서드
      *
