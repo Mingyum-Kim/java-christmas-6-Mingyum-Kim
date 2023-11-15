@@ -12,7 +12,7 @@ import christmas.service.promotion.gift.GiftPromotion;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
+import java.util.Optional;
 
 public class PromotionHandler {
     private static final int THRESHOLD = 10_000;
@@ -42,21 +42,26 @@ public class PromotionHandler {
         return orders.calculateOrdersCost() >= THRESHOLD;
     }
 
-    private List<PromotionResult> generatePromotionResults(Date date, Orders orders,
-                                                           List<PromotionService<?>> promotionServices) {
+    private List<PromotionResult> generatePromotionResults(
+            Date date, Orders orders,
+            List<PromotionService<?>> promotionServices
+    ) {
         return promotionServices.stream()
-                .map(promotionService -> generatePromotionResult(date, orders, promotionService))
-                .filter(Objects::nonNull)
+                .map(promotionService -> generatePromotionResult(
+                        date,
+                        orders,
+                        promotionService
+                ))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
                 .toList();
     }
 
-    private PromotionResult generatePromotionResult(Date date, Orders orders,
-                                                    PromotionService<?> promotionService) {
-        PromotionResult promotionResult = (PromotionResult) promotionService.apply(date, orders);
-        if (promotionResult.isUsable()) {
-            return promotionResult;
-        }
-        return null;
+    private Optional<PromotionResult> generatePromotionResult(
+            Date date, Orders orders,
+            PromotionService<?> promotionService
+    ) {
+        return (Optional<PromotionResult>) promotionService.apply(date, orders);
     }
 
     /**
