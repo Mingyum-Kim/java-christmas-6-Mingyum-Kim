@@ -24,6 +24,11 @@ public class Gift extends Benefit {
         );
     }
 
+    /**
+     * 증정 내역의 혜택을 계산하는 메서드
+     *
+     * @return 증정품의 개당 가격과 총 개수를 곱한 결과값
+     */
     public int getPrice() {
         return this.menuItem.getCost() * this.count.getValue();
     }
