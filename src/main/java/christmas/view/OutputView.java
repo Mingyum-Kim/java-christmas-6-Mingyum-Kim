@@ -18,6 +18,7 @@ public class OutputView {
     private static final String BENEFIT_NOTICE_MESSAGE = "\n<혜택 내역>";
     private static final String BENEFIT_RESPONSE_MESSAGE = "%s: -%,d원";
     private static final String TOTAL_BENEFIT_NOTICE_MESSAGE = "\n<총혜택 금액>";
+    private static final String TOTAL_BENEFIT_RESPONSE_MESSAGE = "-%,d원";
     private static final String PAYMENT_NOTICE_MESSAGE = "\n<할인 후 예상 결제 금액>";
     private static final String EVENT_BADGE_NOTICE_MESSAGE = "\n<12월 이벤트 배지>";
 
@@ -100,7 +101,7 @@ public class OutputView {
      */
     public void printTotalBenefits(final int benefits) {
         ConsoleWriter.printlnMessage(TOTAL_BENEFIT_NOTICE_MESSAGE);
-        ConsoleWriter.printlnFormat(COST_MESSAGE, benefits);
+        ConsoleWriter.printlnFormat(TOTAL_BENEFIT_RESPONSE_MESSAGE, benefits);
     }
 
     /**
