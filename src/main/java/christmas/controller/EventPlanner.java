@@ -40,6 +40,7 @@ public class EventPlanner {
 
         outputView.printGiftMenu(promotionResults.toGiftsResponse());
         outputView.printBenefits(promotionResults.toBenefitsResponse());
+        outputView.printTotalBenefits(promotionResults.calculateTotalBenefits());
         outputView.printCost(promotionResults.calculatePayment(orders));
     }
 }

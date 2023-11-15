@@ -16,6 +16,7 @@ public class OutputView {
     private static final String NONE = "없음";
     private static final String BENEFIT_NOTICE_MESSAGE = "\n<혜택 내역>";
     private static final String BENEFIT_RESPONSE_MESSAGE = "%s: -%,d원";
+    private static final String TOTAL_BENEFIT_NOTICE_MESSAGE = "총혜택 금액";
 
     public void start() {
         ConsoleWriter.printlnMessage(START_MESSAGE);
@@ -72,6 +73,11 @@ public class OutputView {
 
     private void printBenefit(final String promotion, final int price) {
         ConsoleWriter.printlnFormat(BENEFIT_RESPONSE_MESSAGE, promotion, price);
+    }
+
+    public void printTotalBenefits(final int benefits) {
+        ConsoleWriter.printlnMessage(TOTAL_BENEFIT_NOTICE_MESSAGE);
+        ConsoleWriter.printlnFormat(COST_MESSAGE, benefits);
     }
 
     public void printCost(final int cost) {
