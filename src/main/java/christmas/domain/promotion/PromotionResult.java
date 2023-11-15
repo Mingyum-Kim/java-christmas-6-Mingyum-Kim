@@ -39,11 +39,4 @@ public class PromotionResult<T extends Benefit> {
     public Discount getDiscount() {
         return (Discount) benefit;
     }
-
-    public boolean isUsable() {
-        if (isInstanceOf(Gift.class)) {
-            return getGift().isNotEmpty();
-        }
-        return getDiscount().isNotEmpty();
-    }
 }

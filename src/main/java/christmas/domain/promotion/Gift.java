@@ -27,8 +27,4 @@ public class Gift extends Benefit {
     public int getPrice() {
         return this.menuItem.getCost() * this.count.getValue();
     }
-
-    public boolean isNotEmpty() {
-        return this.menuItem != MenuItem.NONE;
-    }
 }
