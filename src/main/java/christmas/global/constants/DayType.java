@@ -29,8 +29,12 @@ public enum DayType {
 
     private static DayType findDayType(DayOfWeek target) {
         return Arrays.stream(DayType.values())
-                .filter(dayOfWeek -> dayOfWeek.equals(target))
+                .filter(dayType -> dayType.containsDayOfWeek(target))
                 .findAny()
                 .orElseThrow(() -> new IllegalStateException());
+    }
+
+    private boolean containsDayOfWeek(DayOfWeek dayOfWeek) {
+        return days.contains(dayOfWeek);
     }
 }
